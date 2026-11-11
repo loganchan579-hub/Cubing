@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Dark Mode Website</title>
+    <title>My Rubik's Cube Training Hub</title>
     <style>
         /* BASE DARK MODE STYLES */
         body {
@@ -12,31 +12,45 @@
             max-width: 650px;
             margin: 40px auto;
             padding: 0 20px;
-            color: #c9d1d9;            /* Light grey text for readability */
-            background-color: #0d1117; /* Deep charcoal background */
+            color: #c9d1d9;
+            background-color: #0d1117;
         }
 
         h1 {
-            color: #58a6ff;            /* Bright electric blue heading */
+            color: #ff9100;            /* Rubik's Orange Heading */
             border-bottom: 2px solid #21262d;
             padding-bottom: 10px;
             font-size: 2.2rem;
         }
 
-        /* DARK CARD CONTAINER */
+        h2 {
+            color: #58a6ff;            /* Blue Subheadings */
+            margin-top: 0;
+        }
+
+        /* CARD CONTAINER */
         .card {
-            background: #161b22;       /* Slightly lighter dark background for the box */
+            background: #161b22;
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            border: 1px solid #30363d; /* Subtle dark border */
+            border: 1px solid #30363d;
             margin-bottom: 20px;
         }
 
-        /* BUTTON STYLE */
+        /* SIMPLE BULLET LISTS */
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* LINKS STYLED AS BUTTONS */
         .btn {
             display: inline-block;
-            background-color: #238636; /* GitHub green button */
+            background-color: #238636; /* Green button */
             color: #ffffff;
             padding: 12px 24px;
             text-decoration: none;
@@ -46,33 +60,44 @@
             transition: background-color 0.2s ease;
         }
 
-        /* BUTTON HOVER EFFECT */
         .btn:hover {
-            background-color: #2ea44f; /* Lighter green on hover */
-        }
-
-        /* IMAGE STYLES */
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-top: 15px;
-            display: block;
-            opacity: 0.9;              /* Dims images slightly for dark mode eye comfort */
+            background-color: #2ea44f;
         }
     </style>
 </head>
 <body>
 
-    <h1>Welcome to My Website</h1>
+    <h1>🧩 My Cubing Journey</h1>
     
+    <!-- MY CURRENT STATS CARD -->
     <div class="card">
-        <p>This page features a sleek, eye-friendly dark mode layout. All the CSS variables and text colors are tuned specifically to prevent eye strain.</p>
-        <p>You can change the text right here inside this container or use the button below to link to another place.</p>
-        
-        <!-- You can replace the # with any web URL like https://google.com -->
-        <a href="#" class="btn">Click This Button</a>
+        <h2>⏱️ My Personal Bests</h2>
+        <p>This is where I track my progress as I practice and learn new algorithms!</p>
+        <ul>
+            <li><strong>Current Average:</strong> 45 seconds</li>
+            <li><strong>Personal Best (PB):</strong> 32 seconds</li>
+            <li><strong>Method I Use:</strong> CFOP (4-Look Last Layer)</li>
+        </ul>
+    </div>
+
+    <!-- TRAINING GOALS CARD -->
+    <div class="card">
+        <h2>🎯 My Training Goals</h2>
+        <ul>
+            <li>Practice 50 solves every day.</li>
+            <li>Learn all Full PLL algorithms by the end of the month.</li>
+            <li>Get my average solve time under 30 seconds!</li>
+        </ul>
+    </div>
+
+    <!-- HELPFUL RESOURCES CARD -->
+    <div class="card">
+        <h2>🔗 Essential Cubing Tools</h2>
+        <p>These are the tools I use every day to get faster:</p>
+        <!-- You can change these links to your favorite cubing websites or timers -->
+        <a href="https://cstimer.net" target="_blank" class="btn">Open csTimer</a>
     </div>
 
 </body>
 </html>
+
