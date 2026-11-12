@@ -1,0 +1,109 @@
+const elapsed = (performance.now() - startTime) / 1000;
+display.textContent = elapsed.toFixed(2);
+}, 10);
+}
+function stopTimer() {
+isRunning = false;
+clearInterval(timerInterval);
+const finalTime = parseFloat(display.textContent);
+if (finalTime > 0) {
+solves.push({ time: finalTime, penalty: '' });
+updateStats();
+}
+statusText.innerHTML = 'Hold SPACEBAR until green, then release';
+generateScramble();
+}
+// Spacebar Detection (Works across all browsers)
+document.addEventListener('keydown', (e) => {
+const isSpace = e.code === 'Space' || e.key === ' ' || e.keyCode === 32;
+if (isSpace) {
+e.preventDefault();
+}
+if (isRunning) {
+stopTimer();
+return;
+}
+if (isSpace && !isHolding && !e.repeat) {
+isHolding = true;
+display.classList.add('timer-holding');
+statusText.textContent = 'Keep holding...';
+holdTimeout = setTimeout(() => {
+isReady = true;
+display.classList.remove('timer-holding');
+display.classList.add('timer-ready');
+display.textContent = '0.00';
+statusText.textContent = 'READY! Release spacebar to go';
+}, 300);
+}
+});
+document.addEventListener('keyup', (e) => {
+const isSpace = e.code === 'Space' || e.key === ' ' || e.keyCode === 32;
+if (isSpace) {
+e.preventDefault();
+clearTimeout(holdTimeout);
+display.classList.remove('timer-holding', 'timer-ready');
+if (isReady) {
+isReady = false;
+startTimer();
+} else if (isHolding) {
+statusText.innerHTML = 'Hold slightly longer until green!';
+}
+isHolding = false;
+}
+});
+// Click / Touch Button Controls
+toggleBtn.addEventListener('click', (e) => {
+e.target.blur();
+if (isRunning) {
+stopTimer();
+} else {
+startTimer();
+}
+});
+plus2Btn.addEventListener('click', (e) => {
+e.target.blur();
+if (solves.length > 0) {
+const last = solves[solves.length - 1];
+last.penalty = last.penalty === '+2' ? '' : '+2';
+display.textContent = formatSolve(last).replace('s', '');
+updateStats();
+}
+});
+dnfBtn.addEventListener('click', (e) => {
+e.target.blur();
+if (solves.length > 0) {
+const last = solves[solves.length - 1];
+last.penalty = last.penalty === 'DNF' ? '' : 'DNF';
+display.textContent = formatSolve(last).replace('s', '');
+updateStats();
+}
+});
+newScrambleBtn.addEventListener('click', (e) => {
+e.target.blur();
+generateScramble();
+});
+clearHistoryBtn.addEventListener('click', (e) => {
+e.target.blur();
+solves = [];
+display.textContent = '0.00';
+updateStats();
+});
+// Algorithm Category Filter Tabs
+const filterBtns = document.querySelectorAll('.filter-btn');
+const algoCards = document.querySelectorAll('.algo-card');
+filterBtns.forEach(btn => {
+btn.addEventListener('click', (e) => {
+e.target.blur();
+filterBtns.forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+const filter = btn.getAttribute('data-filter');
+algoCards.forEach(card => {
+if (filter === 'all' || card.getAttribute('data-category') === filter) {
+card.style.display = 'block';
+} else {
+card.style.display = 'none';
+}
+});
+});
+});
+generateScramble();
